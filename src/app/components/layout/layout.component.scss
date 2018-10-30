@@ -1,0 +1,39 @@
+.nav {
+    a{
+    color: #fff;
+      text-decoration: none;
+      
+      background-color: transparent;
+      -webkit-text-decoration-skip: objects;
+      padding-right: 0.5rem;
+      padding-left: 1rem;
+      display: block;
+      padding: 0.5rem 1rem;
+      
+    }
+  }
+
+  .nav {
+    .active{
+    color: #fff;
+    text-transform: uppercase;
+      text-decoration:none;
+      background-color: transparent;
+      -webkit-text-decoration-skip: objects;
+      padding-right: 0.5rem;
+      padding-left: 1rem;
+      display: block;
+      padding: 0.5rem 1rem;
+      font-weight: 500;
+      
+    }
+  }
+  
+
+  .navbar {
+      padding-bottom: 0;
+  }
+  .mb-12
+  {
+      margin-bottom: 0px;
+  }

@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+@import "./scss/myTheme";
+.container{
+    margin-top:10%;
+}
+
+
+$fa-font-path: "~font-awesome/fonts";
+@import "~font-awesome/scss/font-awesome";
+@import "./scss/bootstrap/scss/bootstrap";
