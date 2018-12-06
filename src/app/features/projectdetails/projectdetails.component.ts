@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ProjectDetail } from './Shared/project.model';
+import { ProjectdetailsService } from './Shared/projectdetails.service';
+
 
 @Component({
   selector: 'app-projectdetails',
@@ -6,30 +9,35 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./projectdetails.component.scss']
 })
 export class ProjectdetailsComponent implements OnInit {
-  name = 'ng2-ckeditor';
-  ckeConfig: any;
-  mycontent: string;
-  log: string = '';
 
-  constructor() { 
-    
+  project: ProjectDetail = new ProjectDetail();
+  projects: ProjectDetail[] = [];
+  selectedProject: ProjectDetail;
+  constructor(private projectService: ProjectdetailsService) {
   }
-
   ngOnInit() {
-    this.ckeConfig = {
-      allowedContent: false,
-      extraPlugins: 'divarea',
-      forcePasteAsPlainText: true
-    };
-    
+    this.getProjects();
   }
 
-  onChange($event: any): void {
-    console.log("onChange");
-    //this.log += new Date() + "<br />";
+  getProjects(): void {
+    this.projects =[];
+    this.projectService.getProjects().subscribe(data => { this.projects = data})
+  }
+
+  getProjectsEvent(project:ProjectDetail): void {
+    this.projects =[];
+    this.selectedProject = project;
+    this.projectService.getProjects().subscribe(data => { this.projects = data});
   }
   
 
-     
+
+  onSelect(project: ProjectDetail): void {
+    this.selectedProject = project;
+  }
+
+  addProject():void{
+    this.selectedProject = new ProjectDetail;
+  }
 
 }

@@ -1,9 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CKEditorModule } from 'ng2-ckeditor';
+import { HttpErrorHandler }     from './http-error-handler.service';
+import { MessageService }       from './message.service';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -12,9 +15,11 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CKEditorModule
+    CKEditorModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [HttpErrorHandler,
+    MessageService,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

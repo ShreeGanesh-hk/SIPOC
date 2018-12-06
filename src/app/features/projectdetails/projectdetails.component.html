@@ -1,54 +1,31 @@
 <app-layout>
-  <div class="container">
-    <div class="card">
-      <div class="card-header">
-        Add Project Details
+  <div class="container container-fluid">
+    <div class="row mb-2">
+      <div class="col-lg-5">
+        <button class="btn btn-primary" (click)="addProject()" type="button">Add Project</button>
       </div>
-      <div class="card-body">
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="projectShortForm">Project Short Form</span>
-            </div>
-            <input type="text" class="form-control" placeholder="Project Short Form" aria-label="shortForm"
-              aria-describedby="basic-addon1">
+    </div>
+    <div class="row">
+
+      <div class="col-lg-4">
+        <div class="card">
+          <div class="card-header">
+            Projects
           </div>
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="projectName">Project Name</span>
-            </div>
-            <input type="text" class="form-control" placeholder="Project Name" aria-label="ProjectName"
-              aria-describedby="basic-addon1">
+          <div class="card-body">
+            <ul class="list-group">
+              <li class="list-group-item" *ngFor="let proj of projects" [class.selected]="proj === selectedProject"
+                (click)="onSelect(proj)">
+                <span class="badge">{{proj.ID}}</span> {{proj.Name}}
+              </li>
+            </ul>
           </div>
-          <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="contactPerson">Contact Person</span>
-              </div>
-              <input type="text" class="form-control" placeholder="Contact Person" aria-label="ContactPerson"
-                aria-describedby="basic-addon1">
-            </div>
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="Description">Description</span>
-            </div>
-          </div>   
-                 
-          <form role="form" #myForm="ngForm" accept-charset="UTF-8" novalidate>
-              <div class="form-group has-feedback" 
-                    [ngClass]="{ 'has-error': myckeditor.invalid && myckeditor.touched }">
-                <ckeditor [(ngModel)]="mycontent" 
-                          #myckeditor="ngModel"
-                          name="myckeditor"
-                          required
-                          [config]="ckeConfig" 
-                          debounce="500" 
-                          (change)="onChange($event)">
-                </ckeditor>
-                <div *ngIf="myckeditor.invalid && myckeditor.touched" class="help-block">Required field.</div>
-              </div>
-              <button [disabled]="myForm.invalid" class="btn btn-primary">Save</button>
-              </form>
-              <div [innerHTML]="mycontent"></div>
+        </div>
       </div>
+      <div class="col-lg-8">
+        <app-projectdetail [project]="selectedProject" (voted)="getProjectsEvent($event)"></app-projectdetail>
+      </div>
+
     </div>
   </div>
 </app-layout>
